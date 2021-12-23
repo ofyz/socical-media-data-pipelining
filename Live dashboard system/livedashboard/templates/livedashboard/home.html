@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DASHBOARD</title>
+
+        <style type="text/css">
+        <!--
+        html, body, #tbl_wrap { height: 100%; width: 100%; padding: 0; margin: 0; }
+        #td_wrap { vertical-align: middle; text-align: center; }
+        * {
+            box-sizing: border-box;
+        }
+
+        
+        .column {
+        float: left;
+        padding: 10px;
+        }
+
+            .left {
+            width: 50%;
+            }
+
+            .right {
+            width: 50%;
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+            content: "";
+            display: table;
+            clear: both;
+            }
+        -->
+        </style>
+    </head>
+
+    <body>
+        <table id="tbl_wrap"><tbody><tr><td id="td_wrap">
+        <!-- START: Anything between these wrapper comment lines will be centered -->
+
+
+        <div style="border: 1px solid black; display: inline-block;">
+            <body>
+
+        <h2>DASHBOARD TOOL</h2>
+
+        <div class="row">
+            <div class="column left" style="background-color:rgb(217, 219, 224);">
+                <h2>Statistics</h2>
+                <h3>Reddit</h3>
+                <div>
+                {% for i in number_list %}
+                    {% if i == "2023811" %}
+                        <li> Total :{{i}} </li>
+                    {% elif i == "688991" %}
+                        <li> Positive :{{i}} </li>
+                    {% elif i == "301385" %}
+                        <li> Negative :{{i}} </li>
+                    {% else %}
+                        <li> Neutral :{{i}} </li>
+                    {% endif %}
+                {% endfor %}
+                
+                </div>
+                <h3>Twitter</h3>
+                <div>
+                {% for i in number_list2 %}
+                    {% if i == "1045725" %}
+                        <li> Total :{{i}} </li>
+                    {% elif i == "494585" %}
+                        <li> Positive :{{i}} </li>
+                    {% elif i == "211965" %}
+                        <li> Negative :{{i}} </li>
+                    {% else %}
+                        <li> Neutral :{{i}} </li>
+                    {% endif %}
+                {% endfor %}
+                
+                </div>
+            </div>
+            <div class="column right" style="background-color:#bbb;">
+                <h2>Analysis</h2>
+                   <div> <p>Please enter name of the subreddit that you want to see Statistics</p></div>
+                   <div>
+                    
+                        <form action = "" method = "get">
+                            {% csrf_token %}
+                            <label for="your_name">Subreddit: </label>
+                            <input id="your_name" type="text" name="subreddit_text">
+                            <input type="submit" value="OK">
+                        </form>
+                    </div>
+                    <div>
+                        {% if subreddit == Null%}
+                            <p>!NAME OF THE SUBREDDIT!</p>
+                        {% else %}
+                        
+
+                            <p>NAME OF THE SUBREDDIT:{{subreddit}}</p>
+                        {% endif %}
+                        
+                        <li> Positive :{{positive}} </li>
+                        <li> Negative :{{negative}} </li>
+                        <li> Neutral :{{neutral}} </li>
+                
+                    </div>
+                    <div>
+                         <p>Please enter "sensitive" to the input area to see sentiment result of tweets that is flaged as possibly sensetive</p>
+                         
+                    <form action = "" method = "get">
+                        {% csrf_token %}
+                        <label for="your_name">Sensitivity: </label>
+                        <input id="your_name" type="text" name="reddit_flag">
+                        <input type="submit" value="OK">
+                    </form>
+                        <li> Positive :{{pos}} </li>
+                        <li> Negative :{{neg}} </li>
+                        <li> Neutral :{{neut}} </li>
+                    </div>
+                    </div>
+
+                    
+                   
+                    <div>
+                    
+
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        <!-- END: Anything between these wrapper comment lines will be centered -->
+        </td></tr></tbody></table>
+    </body>
+</html>
